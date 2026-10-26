@@ -45,7 +45,7 @@ iar Laravel/CodeIgniter ar fi adus mai mult cod-cadru decât cod propriu pentru 
 ```bash
 brew install php mariadb
 brew services start mariadb
-git clone <adresa-depozitului> aripi-romanesti && cd aripi-romanesti
+git clone https://github.com/magyproduction/aripi-romanesti.git && cd aripi-romanesti
 
 # baza de date: schema (9 tabele) + datele inițiale
 # (Homebrew dă acces de administrator utilizatorului macOS care a instalat MariaDB)
