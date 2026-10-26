@@ -1,117 +1,36 @@
-# Aripi românești — 12 repere ale zborului
+# Aripi românești
 
-Expoziție virtuală despre aviația și cosmonautica românească, de la manuscrisul lui Conrad Haas
-(sec. XVI) până la IAR-99 Șoim (1985). Proiect pentru disciplina **Web Design**, master, anul I.
+Proiect Web Design: expoziția virtuală „Aripi românești — 12 repere ale zborului”.
 
-Conceptul complet (colecția, cele 12 exponate, harta site-ului, wireframe-uri, paleta, fonturile
-și schema bazei de date) este în [`docs/concept-etapa1.pdf`](docs/concept-etapa1.pdf).
+## 1. Platforma aleasă
 
-## Stadiul proiectului
+PHP, fără framework, cu baza de date MariaDB. Site-ul are puține pagini, iar fiecare pagină
+citește direct din bază, deci nu este nevoie de WordPress, Laravel sau CodeIgniter.
 
-| Etapă | Conținut | Stare |
-|---|---|---|
-| 1 | Colecția și titlul, cele 12 exponate, hartă, wireframe-uri, paletă și fonturi, schema bazei | gata |
-| 2 | Platforma, mediul offline, depozitul Git, pagina „Hello” conectată la bază | gata |
-| 3+ | Paginile din harta site-ului: colecție, exponat, cronologie, căutare, contact, administrare | urmează |
+## 2. Mediul offline
 
-## Platforma aleasă: PHP simplu (fără framework)
+Instalat local, pe macOS:
 
-- Site-ul are puține pagini (5 în meniu, pagina exponatului și administrarea), cu adrese simple
-  (`colectie.php?sectiune=…`, `exponat.php?slug=…`), deja stabilite în harta din etapa 1.
-- Fiecare pagină se scrie direct în PHP: se vede exact ce interogare SQL produce ce bucată de HTML,
-  fără rutare, ORM sau Composer de învățat în paralel.
-- Elementele comune (header, footer, conexiunea la bază) stau în `includes/` și se includ cu `require`.
-- Acces la bază prin **PDO** cu interogări pregătite (protecție la SQL injection), parole cu `password_hash()`.
-- Rulează pe orice găzduire cu PHP 8 și MySQL/MariaDB, fără configurare specială.
+- PHP 8.5.12
+- MariaDB 13.0.2, pornit ca serviciu (`brew services start mariadb`)
+- serverul web integrat din PHP: `php -S localhost:8000`
 
-WordPress ar fi impus teme și pluginuri peste o structură de date proprie (fișă tehnică, persoane, surse),
-iar Laravel/CodeIgniter ar fi adus mai mult cod-cadru decât cod propriu pentru un site de această mărime.
+Proiectul rulează la fel și în XAMPP (folderul se copiază în `htdocs`).
 
-## Mediul de lucru offline
+## 3. Depozitul Git
 
-| | Folosit la dezvoltare (macOS) | Echivalent Windows |
-|---|---|---|
-| Server web | serverul integrat PHP: `php -S localhost:8000` | Apache din XAMPP |
-| PHP | PHP 8.5 (Homebrew) | PHP 8.x din XAMPP |
-| Baza de date | MariaDB (Homebrew), serviciu local pe portul 3306 | MariaDB din XAMPP |
-| Administrare bază | linia de comandă `mariadb` | phpMyAdmin |
-| Editor | Visual Studio Code | Visual Studio Code |
-| Versionare | Git | Git |
+https://github.com/magyproduction/aripi-romanesti
 
-## Instalare și pornire
+`.gitignore` exclude `includes/config.php`, fișierul cu parola bazei de date.
 
-### macOS (Homebrew)
+## 4. Pagina „Hello”
 
-```bash
-brew install php mariadb
-brew services start mariadb
-git clone https://github.com/magyproduction/aripi-romanesti.git && cd aripi-romanesti
-
-# baza de date: schema (9 tabele) + datele inițiale
-# (Homebrew dă acces de administrator utilizatorului macOS care a instalat MariaDB)
-mariadb < sql/schema.sql
-mariadb < sql/seed.sql
-
-# utilizator propriu pentru aplicație (alegeți o parolă)
-mariadb -e "CREATE USER 'aripi_app'@'localhost' IDENTIFIED BY 'parola-aleasa';
-                 GRANT SELECT, INSERT, UPDATE, DELETE ON aripi_romanesti.* TO 'aripi_app'@'localhost';"
-
-cp includes/config.example.php includes/config.php   # completați user/parolă
-php -S localhost:8000
-```
-
-Pagina „Hello” se deschide la <http://localhost:8000/>.
-
-### Windows (XAMPP)
-
-1. Instalați XAMPP (PHP 8.x) și porniți **Apache** și **MySQL** din panoul de control.
-2. Copiați folderul proiectului în `C:\xampp\htdocs\aripi-romanesti`.
-3. În phpMyAdmin (<http://localhost/phpmyadmin>) → *Import*: întâi `sql/schema.sql`, apoi `sql/seed.sql`.
-4. Copiați `includes/config.example.php` ca `includes/config.php` (implicit XAMPP: `root`, fără parolă).
-5. Deschideți <http://localhost/aripi-romanesti/>.
-
-## Pagina „Hello”
-
-`index.php` se conectează la baza `aripi_romanesti` și afișează:
-
-- versiunea serverului, numele bazei, colația (`utf8mb4_romanian_ci`), numărul de tabele (9) și versiunea PHP;
-- cele 4 secțiuni ale expoziției, cu numărul de exponate din fiecare (`categorii` + `COUNT` pe `exponate`);
-- cele 12 exponate, citite din tabelul `exponate` și ordonate după an.
-
-Dacă baza nu răspunde, pagina afișează ce trebuie verificat în loc de o eroare PHP.
+`index.php` se conectează la baza `aripi_romanesti` și afișează secțiunile expoziției citite din tabelele `categorii` și `exponate`.
 
 ![Pagina Hello](docs/hello.png)
 
-## Structura
+## Pornire
 
-```text
-aripi-romanesti/
-├── index.php                 pagina „Hello” (devine pagina Acasă)
-├── css/style.css             paleta și tipografia din etapa 1
-├── includes/
-│   ├── config.example.php    model de configurare (config.php nu intră în Git)
-│   ├── db.php                conexiunea PDO și funcția e() pentru escapare
-│   ├── header.php
-│   └── footer.php
-├── sql/
-│   ├── schema.sql            cele 9 tabele, InnoDB, utf8mb4_romanian_ci
-│   └── seed.sql              4 secțiuni, 12 exponate, 6 persoane
-└── docs/
-    ├── concept-etapa1.pdf
-    └── hello.png
-```
-
-## Baza de date
-
-`aripi_romanesti`, 9 tabele: `categorii`, `exponate`, `imagini`, `specificatii`, `persoane`,
-`exponat_persoana`, `surse` (conținutul expoziției) și `utilizatori`, `mesaje` (administrare și contact).
-`exponate` este tabelul central; legătura cu persoanele este N:M prin `exponat_persoana`.
-
-Ambele fișiere SQL încep cu `SET NAMES utf8mb4`: fără el, un client configurat implicit pe latin1
-importă „ș” și „ț” ca „È™” și „È›”. Conexiunea PDO cere și ea `charset=utf8mb4`.
-
-## Git
-
-- `includes/config.php` este în `.gitignore`: parolele bazei nu ajung în depozit.
-- Schema și datele inițiale sunt versionate în `sql/`, deci baza se poate reface oricând.
-- Mesajele de commit descriu ce s-a schimbat, câte un commit pentru fiecare pas.
+1. Importă `sql/schema.sql`, apoi `sql/seed.sql` (din linia de comandă `mariadb` sau din phpMyAdmin).
+2. Copiază `includes/config.example.php` ca `includes/config.php` și completează utilizatorul și parola bazei.
+3. Rulează `php -S localhost:8000` și deschide http://localhost:8000.

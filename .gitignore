@@ -1,24 +1,7 @@
-# Date de conectare locale (fiecare își face copia din config.example.php)
+# parola bazei de date
 includes/config.php
-.env
 
-# Fișiere urcate din panoul de administrare (etapele următoare)
-uploads/
-
-# Dependențe și fișiere generate
-vendor/
-node_modules/
-*.log
-*.zip
-
-# Exporturi locale ale bazei (schema și datele inițiale stau în sql/)
-*.sql.gz
-dump*.sql
-
-# Sistem de operare și editoare
+# fișiere de sistem și de editor
 .DS_Store
-Thumbs.db
-desktop.ini
 .vscode/
 .idea/
-*.swp

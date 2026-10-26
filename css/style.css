@@ -1,68 +1,33 @@
-/* Aripi românești — paleta și tipografia din etapa 1 (secțiunea 5) */
+/* Paleta din etapa 1 */
 :root {
-  --c-primar: #0F2238;    /* Bleumarin altitudine: header, footer, titluri */
-  --c-secundar: #2F6FA8;  /* Albastru cer: linkuri, filtre active */
-  --c-accent: #EA6A35;    /* Portocaliu semnalizare: doar acțiuni, cu text bleumarin */
-  --c-fundal: #F5F1E8;    /* Hârtie de arhivă */
-  --c-text: #1E2329;      /* Grafit */
-  --c-linie: #C3CAD3;     /* Aluminiu: doar decorativ */
-
-  --f-titlu: "Barlow Condensed", "Arial Narrow", sans-serif;
-  --f-text: "IBM Plex Sans", system-ui, "Segoe UI", sans-serif;
-  --f-mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+  --c-primar: #0F2238;
+  --c-secundar: #2F6FA8;
+  --c-fundal: #F5F1E8;
+  --c-text: #1E2329;
+  --c-linie: #C3CAD3;
 }
-
-*, *::before, *::after { box-sizing: border-box; }
 
 body {
   margin: 0;
   background: var(--c-fundal);
   color: var(--c-text);
-  font-family: var(--f-text);
+  font-family: system-ui, "Segoe UI", sans-serif;
   font-size: 1.0625rem;
   line-height: 1.6;
 }
 
-h1, h2, h3 { font-family: var(--f-titlu); color: var(--c-primar); line-height: 1.15; }
-h1 { font-size: clamp(2.25rem, 5vw, 3rem); font-weight: 700; margin: 0 0 .5rem; }
-h2 { font-size: 2rem; font-weight: 600; margin: 2.5rem 0 1rem; }
+h1, h2 { color: var(--c-primar); }
 a { color: var(--c-secundar); }
-code { font-family: var(--f-mono); font-size: .9em; }
 
-.container { width: min(72rem, 100% - 2rem); margin-inline: auto; }
+.container { width: min(60rem, 100% - 2rem); margin-inline: auto; }
 
-.site-header { background: var(--c-primar); color: #fff; }
-.site-header .container { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: .9rem; flex-wrap: wrap; }
-.logo { color: #fff; text-decoration: none; font-family: var(--f-titlu); font-size: 1.5rem; font-weight: 700; letter-spacing: .02em; }
-.eticheta-etapa { font-size: .875rem; opacity: .85; }
+.site-header { background: var(--c-primar); padding-block: .9rem; }
+.logo { color: #fff; font-weight: 700; font-size: 1.25rem; text-decoration: none; }
 
-.hello { padding-block: 3rem 1rem; }
-.subtitlu { font-size: 1.2rem; max-width: 40rem; margin: 0; }
-
-.stare { background: #fff; border: 1px solid var(--c-linie); border-left: 6px solid var(--c-secundar); border-radius: .5rem; padding: .5rem 1.5rem 1rem; }
-.stare h2 { margin-top: .75rem; font-size: 1.5rem; }
+.stare { background: #fff; border: 1px solid var(--c-linie); border-left: 6px solid; border-radius: .5rem; padding: .75rem 1rem; }
 .stare-ok { border-left-color: #2E7D4F; }
 .stare-eroare { border-left-color: #B3261E; }
 
-.fisa { display: grid; grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); gap: .75rem 2rem; margin: 0; }
-.fisa div { border-top: 1px solid var(--c-linie); padding-top: .4rem; }
-.fisa dt { font-size: .875rem; color: #4A5560; }
-.fisa dd { margin: 0; font-family: var(--f-mono); font-size: .9375rem; overflow-wrap: anywhere; }
-
-.sectiuni { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: 1rem; }
-.sectiuni li { background: #fff; border: 1px solid var(--c-linie); border-radius: .5rem; padding: 1rem; display: flex; flex-direction: column; text-align: center; }
-.sectiuni strong { font-family: var(--f-titlu); font-size: 1.375rem; font-weight: 600; color: var(--c-primar); }
-
-.tabel-scroll { overflow-x: auto; background: #fff; border: 1px solid var(--c-linie); border-radius: .5rem; }
-table { border-collapse: collapse; width: 100%; min-width: 40rem; }
-caption { text-align: left; padding: .75rem 1rem; font-weight: 600; }
-th, td { padding: .55rem 1rem; text-align: left; border-top: 1px solid var(--c-linie); vertical-align: top; }
-thead th { background: var(--c-primar); color: #fff; font-weight: 600; border-top: 0; }
-tbody th { font-weight: 600; }
-tbody tr:nth-child(even) { background: #FAF8F3; }
-.nr, .mono { font-family: var(--f-mono); font-size: .9375rem; }
-.recomandat { display: inline-block; margin-left: .4rem; padding: 0 .45rem; border-radius: 1rem; background: var(--c-accent); color: var(--c-primar); font-size: .75rem; font-weight: 600; vertical-align: .15em; }
-
-.site-footer { margin-top: 4rem; background: var(--c-primar); color: #fff; font-size: .875rem; }
+.site-footer { margin-top: 3rem; background: var(--c-primar); color: #fff; font-size: .875rem; }
 .site-footer .container { padding-block: 1rem; }
 .site-footer p { margin: 0; }
