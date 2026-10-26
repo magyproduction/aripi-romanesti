@@ -4,18 +4,18 @@ Proiect Web Design: expoziția virtuală „Aripi românești — 12 repere ale 
 
 ## 1. Platforma aleasă
 
-PHP, fără framework, cu baza de date MariaDB. Site-ul are puține pagini, iar fiecare pagină
+PHP, fără framework, cu baza de date MySQL. Site-ul are puține pagini, iar fiecare pagină
 citește direct din bază, deci nu este nevoie de WordPress, Laravel sau CodeIgniter.
 
 ## 2. Mediul offline
 
-Instalat local, pe macOS:
+MAMP 7.4, instalat pe macOS:
 
-- PHP 8.5.12
-- MariaDB 13.0.2, pornit ca serviciu (`brew services start mariadb`)
-- serverul web integrat din PHP: `php -S localhost:8000`
+- Apache 2.4.66, portul 8888
+- MySQL 8.0.44, portul 8889
+- PHP 8.3.30
 
-Proiectul rulează la fel și în XAMPP (folderul se copiază în `htdocs`).
+Proiectul este în `/Applications/MAMP/htdocs/aripi-romanesti`.
 
 ## 3. Depozitul Git
 
@@ -31,6 +31,7 @@ https://github.com/magyproduction/aripi-romanesti
 
 ## Pornire
 
-1. Importă `sql/schema.sql`, apoi `sql/seed.sql` (din linia de comandă `mariadb` sau din phpMyAdmin).
-2. Copiază `includes/config.example.php` ca `includes/config.php` și completează utilizatorul și parola bazei.
-3. Rulează `php -S localhost:8000` și deschide http://localhost:8000.
+1. Copiază folderul proiectului în `/Applications/MAMP/htdocs` și pornește serverele din MAMP (Start).
+2. În phpMyAdmin (http://localhost:8888/phpMyAdmin5/) importă `sql/schema.sql`, apoi `sql/seed.sql`.
+3. Copiază `includes/config.example.php` ca `includes/config.php` (conține deja valorile implicite MAMP).
+4. Deschide http://localhost:8888/aripi-romanesti/.

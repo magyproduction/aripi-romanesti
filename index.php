@@ -30,12 +30,12 @@ require __DIR__ . '/includes/header.php';
     <h1>Hello, Aripi românești!</h1>
 
 <?php if ($eroare): ?>
-    <p class="stare stare-eroare">Nu mă pot conecta la baza de date. Verifică dacă MariaDB/MySQL rulează și datele din <code>includes/config.php</code>.</p>
+    <p class="stare stare-eroare">Nu mă pot conecta la baza de date. Verifică dacă serverele MAMP sunt pornite și datele din <code>includes/config.php</code>.</p>
 <?php if ($debug): ?>
     <p><code><?= e($eroare->getMessage()) ?></code></p>
 <?php endif; ?>
 <?php else: ?>
-    <p class="stare stare-ok">Conectat la baza de date <code>aripi_romanesti</code> (<?= e($versiune) ?>, PHP <?= e(PHP_VERSION) ?>).</p>
+    <p class="stare stare-ok">Conectat la baza de date <code>aripi_romanesti</code> (MySQL <?= e($versiune) ?>, PHP <?= e(PHP_VERSION) ?>).</p>
 
     <h2>Secțiunile expoziției, citite din baza de date</h2>
     <ul>

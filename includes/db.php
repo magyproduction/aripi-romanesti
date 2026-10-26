@@ -1,5 +1,5 @@
 <?php
-// Conexiunea la baza de date, comună pentru toate paginile (PDO + MariaDB/MySQL).
+// Conexiunea la baza de date, comună pentru toate paginile (PDO + MySQL).
 
 function config(): array
 {
