@@ -48,11 +48,12 @@ brew services start mariadb
 git clone <adresa-depozitului> aripi-romanesti && cd aripi-romanesti
 
 # baza de date: schema (9 tabele) + datele inițiale
-sudo mariadb < sql/schema.sql
-sudo mariadb < sql/seed.sql
+# (Homebrew dă acces de administrator utilizatorului macOS care a instalat MariaDB)
+mariadb < sql/schema.sql
+mariadb < sql/seed.sql
 
 # utilizator propriu pentru aplicație (alegeți o parolă)
-sudo mariadb -e "CREATE USER 'aripi_app'@'localhost' IDENTIFIED BY 'parola-aleasa';
+mariadb -e "CREATE USER 'aripi_app'@'localhost' IDENTIFIED BY 'parola-aleasa';
                  GRANT SELECT, INSERT, UPDATE, DELETE ON aripi_romanesti.* TO 'aripi_app'@'localhost';"
 
 cp includes/config.example.php includes/config.php   # completați user/parolă
@@ -105,6 +106,9 @@ aripi-romanesti/
 `aripi_romanesti`, 9 tabele: `categorii`, `exponate`, `imagini`, `specificatii`, `persoane`,
 `exponat_persoana`, `surse` (conținutul expoziției) și `utilizatori`, `mesaje` (administrare și contact).
 `exponate` este tabelul central; legătura cu persoanele este N:M prin `exponat_persoana`.
+
+Ambele fișiere SQL încep cu `SET NAMES utf8mb4`: fără el, un client configurat implicit pe latin1
+importă „ș” și „ț” ca „È™” și „È›”. Conexiunea PDO cere și ea `charset=utf8mb4`.
 
 ## Git
 

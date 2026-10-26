@@ -1,5 +1,6 @@
 -- Aripi românești — date inițiale: cele 4 secțiuni, cele 12 exponate și persoanele legate.
 -- Fișele complete (descriere, imagini, specificații, surse) se adaugă în etapele următoare.
+SET NAMES utf8mb4;  -- fișierul este UTF-8, indiferent de setarea clientului
 USE aripi_romanesti;
 
 INSERT INTO categorii (id_categorie, nume, slug, descriere, ordine) VALUES

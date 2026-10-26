@@ -2,6 +2,7 @@
 -- 9 tabele: 7 pentru conținutul expoziției, 2 pentru administrare și contact.
 -- MariaDB 10.6+ / MySQL 8+, motor InnoDB, utf8mb4 cu colație românească.
 
+SET NAMES utf8mb4;  -- fișierul este UTF-8, indiferent de setarea clientului
 CREATE DATABASE IF NOT EXISTS aripi_romanesti
   CHARACTER SET utf8mb4 COLLATE utf8mb4_romanian_ci;
 USE aripi_romanesti;
