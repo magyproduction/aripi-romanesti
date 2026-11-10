@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+<style>.t{font:700 48px "Barlow Condensed","Arial Narrow",Arial,sans-serif;fill:#fff}.a{font:400 30px "IBM Plex Mono",Menlo,monospace;fill:#EA6A35}.n{font:400 17px Arial,sans-serif;fill:#C3CAD3}</style>
+<rect width="800" height="500" fill="#0F2238"/>
+<g stroke="#2F6FA8" stroke-opacity=".22" stroke-width="1"><path d="M0 0 V500"/><path d="M40 0 V500"/><path d="M80 0 V500"/><path d="M120 0 V500"/><path d="M160 0 V500"/><path d="M200 0 V500"/><path d="M240 0 V500"/><path d="M280 0 V500"/><path d="M320 0 V500"/><path d="M360 0 V500"/><path d="M400 0 V500"/><path d="M440 0 V500"/><path d="M480 0 V500"/><path d="M520 0 V500"/><path d="M560 0 V500"/><path d="M600 0 V500"/><path d="M640 0 V500"/><path d="M680 0 V500"/><path d="M720 0 V500"/><path d="M760 0 V500"/><path d="M800 0 V500"/><path d="M0 0 H800"/><path d="M0 40 H800"/><path d="M0 80 H800"/><path d="M0 120 H800"/><path d="M0 160 H800"/><path d="M0 200 H800"/><path d="M0 240 H800"/><path d="M0 280 H800"/><path d="M0 320 H800"/><path d="M0 360 H800"/><path d="M0 400 H800"/><path d="M0 440 H800"/><path d="M0 480 H800"/></g>
+<g transform="translate(210 250) rotate(-10)" fill="#F5F1E8"><path d="M-150 0 C-120 -14 110 -16 150 -4 C160 0 160 6 150 8 C110 16 -120 14 -150 0 Z"/><path d="M-20 -6 L-70 -110 L-40 -110 L40 -6 Z"/><path d="M-20 6 L-70 110 L-40 110 L40 6 Z"/><path d="M-130 -2 L-155 -50 L-140 -50 L-105 -4 Z"/><path d="M-130 2 L-150 30 L-138 30 L-108 4 Z"/></g>
+<text x="430" y="230" class="t">IAR-37</text>
+<text x="430" y="290" class="a">1937</text>
+<text x="24" y="478" class="n">ilustrație de test</text>
+</svg>

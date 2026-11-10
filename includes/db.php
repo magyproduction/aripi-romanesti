@@ -20,11 +20,16 @@ function db(): PDO
     if ($pdo === null) {
         $c = config()['db'];
         $dsn = sprintf('mysql:host=%s;port=%d;dbname=%s;charset=%s', $c['host'], $c['port'], $c['name'], $c['charset']);
-        $pdo = new PDO($dsn, $c['user'], $c['pass'], [
-            PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
-            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-            PDO::ATTR_EMULATE_PREPARES   => false,
-        ]);
+        try {
+            $pdo = new PDO($dsn, $c['user'], $c['pass'], [
+                PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+                PDO::ATTR_EMULATE_PREPARES   => false,
+            ]);
+        } catch (PDOException $ex) {
+            // excepție nouă, fără lanț: urma excepției PDO ar conține parola
+            throw new RuntimeException('Conexiunea la baza de date a eșuat: ' . $ex->getMessage());
+        }
     }
     return $pdo;
 }
